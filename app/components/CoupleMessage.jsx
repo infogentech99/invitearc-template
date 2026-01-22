@@ -39,7 +39,7 @@ export default function CoupleMessage() {
     return (
 
         <div className="bg-[url('/assets/backmid.png')] bg-cover bg-no-repeat bg-[#1BB1BB]">
-            <div className="lg:h-460 md:h-290 h-385">
+            <div className="lg:h-465 md:h-290 h-380">
                 <h1 className="lg:text-4xl text-3xl text-center text-white lg:pt-42 pt-12 font-cormorant">A message from the couple</h1>
                 <h2 className="lg:text-2xl text-[16px] text-center text-white lg:pt-6 lg:px-60 px-6 lg:mt-28 mt-12">We are both so delighted that you are able to join us in celebrating what we hope will be one of the happiest days of our lives. The affection shown to us by so many people since our roka has been incredibly moving, and has touched us both deeply.
                     We would like to take this opportunity to thank everyone most sincerely for their kindness.
@@ -70,7 +70,7 @@ export default function CoupleMessage() {
                                 <img
                                     src={item.img}
                                     alt=""
-                                    className="w-full lg:h-125 h-120 object-cover lg:rounded-[40px] rounded-[20px]"
+                                    className="w-full lg:h-125 h-120 object-cover lg:rounded-[40px] rounded-[30px]"
                                 />
                             </SwiperSlide>
                         ))}
