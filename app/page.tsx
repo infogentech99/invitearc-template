@@ -1,19 +1,24 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import FallingLamps from "@/app/components/FallingLamps";
 import CoupleMessage from "@/app/components/CoupleMessage";
 import ThingsToKnow from "@/app/components/ThingsToKnow";
 import MarriageCountdown from "@/app/components/MarriageCountdown";
 
 const FloatingLamp = ({ className, style, reverse = false }: { className: string; style?: React.CSSProperties; reverse?: boolean }) => {
-  const duration = 60 + Math.random() * 40; // 60–100s (very slow flow)
-  const delay = Math.random() * 15;
-
-  // depth feel - dramatic size variety
-  const scale = Math.random() < 0.5 
-    ? 0.3 + Math.random() * 0.4  // 0.3–0.7 (small lamps)
-    : 1.2 + Math.random() * 0.8; // 1.2–2.0 (large lamps)
-  const blur = scale < 0.7 ? "blur(1.5px)" : "blur(0px)";
+  // Memoize random values to prevent recalculation on re-renders
+  const lampValues = useMemo(() => {
+    const duration = 60 + Math.random() * 40; // 60–100s (very slow flow)
+    const delay = Math.random() * 15;
+    
+    // depth feel - dramatic size variety
+    const scale = Math.random() < 0.5 
+      ? 0.3 + Math.random() * 0.4  // 0.3–0.7 (small lamps)
+      : 1.2 + Math.random() * 0.8; // 1.2–2.0 (large lamps)
+    const blur = scale < 0.7 ? "blur(1.5px)" : "blur(0px)";
+    
+    return { duration, delay, scale, blur };
+  }, []); // Empty dependency array means these values are calculated only once
 
   return (
     <img
@@ -22,11 +27,11 @@ const FloatingLamp = ({ className, style, reverse = false }: { className: string
       className={`floating-lamp ${className}`}
       style={{
         animationName: reverse ? 'lampFlowReverse' : 'lampFlow',
-        animationDuration: `${duration}s`,
-        animationDelay: `${delay}s`,
-        transform: `scale(${scale})`,
-        filter: `drop-shadow(0 0 18px rgba(255,180,90,0.9)) ${blur}`,
-        '--scale': scale,
+        animationDuration: `${lampValues.duration}s`,
+        animationDelay: `${lampValues.delay}s`,
+        transform: `scale(${lampValues.scale})`,
+        filter: `drop-shadow(0 0 18px rgba(255,180,90,0.9)) ${lampValues.blur}`,
+        '--scale': lampValues.scale,
         ...style,
       } as React.CSSProperties}
     />
