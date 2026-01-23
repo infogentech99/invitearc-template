@@ -4,6 +4,35 @@ import FallingLamps from "@/app/components/FallingLamps";
 import CoupleMessage from "@/app/components/CoupleMessage";
 import ThingsToKnow from "@/app/components/ThingsToKnow";
 import MarriageCountdown from "@/app/components/MarriageCountdown";
+
+const FloatingLamp = ({ className, style, reverse = false }: { className: string; style?: React.CSSProperties; reverse?: boolean }) => {
+  const duration = 60 + Math.random() * 40; // 60–100s (very slow flow)
+  const delay = Math.random() * 15;
+
+  // depth feel - dramatic size variety
+  const scale = Math.random() < 0.5 
+    ? 0.3 + Math.random() * 0.4  // 0.3–0.7 (small lamps)
+    : 1.2 + Math.random() * 0.8; // 1.2–2.0 (large lamps)
+  const blur = scale < 0.7 ? "blur(1.5px)" : "blur(0px)";
+
+  return (
+    <img
+      src="/lamp.png"
+      alt="Lamp"
+      className={`floating-lamp ${className}`}
+      style={{
+        animationName: reverse ? 'lampFlowReverse' : 'lampFlow',
+        animationDuration: `${duration}s`,
+        animationDelay: `${delay}s`,
+        transform: `scale(${scale})`,
+        filter: `drop-shadow(0 0 18px rgba(255,180,90,0.9)) ${blur}`,
+        '--scale': scale,
+        ...style,
+      } as React.CSSProperties}
+    />
+  );
+};
+
 export default function Home() {
   const events = [
     {
@@ -68,10 +97,35 @@ export default function Home() {
       </button>
 
       <audio ref={audioRef} src="/assets/background_song.mp3" loop />
+      {/* hero section */}
+      <div className="bg-[url('/assets/lavaan.png')] bg-cover bg-center bg-no-repeat w-full px-4 sm:px-8  overflow-hidden relative">
+        {/* Decorative Lamps - Natural Flow Pattern */}
+        {/* Left-to-Right Lamps - Less crowded */}
+        <FloatingLamp className="absolute top-10 left-8 w-40 h-40 transform rotate-12 opacity-90" />
+        <FloatingLamp className="absolute top-30 left-20 w-36 h-36 transform rotate-45 opacity-80" />
+        <FloatingLamp className="absolute top-50 left-40 w-32 h-32 transform rotate-30 opacity-85" />
+        <FloatingLamp className="absolute top-70 left-60 w-38 h-38 transform rotate-15 opacity-80" />
+        <FloatingLamp className="absolute top-90 left-80 w-34 h-34 transform rotate-25 opacity-75" />
+        <FloatingLamp className="absolute top-110 left-100 w-28 h-28 transform rotate-10 opacity-85" />
+        <FloatingLamp className="absolute top-130 left-120 w-36 h-36 transform rotate-35 opacity-75" />
+        <FloatingLamp className="absolute top-150 left-140 w-30 h-30 transform rotate-22 opacity-85" />
+        <FloatingLamp className="absolute top-170 left-160 w-32 h-32 transform rotate-18 opacity-80" />
+        <FloatingLamp className="absolute top-190 left-180 w-40 h-40 transform rotate-28 opacity-85" />
+        
+        {/* Right-to-Left Lamps - Less crowded */}
+        <FloatingLamp className="absolute top-20 right-12 w-32 h-32 transform -rotate-6 opacity-85" reverse={true} />
+        <FloatingLamp className="absolute top-40 right-32 w-28 h-28 transform -rotate-12 opacity-75" reverse={true} />
+        <FloatingLamp className="absolute top-60 right-52 w-36 h-36 transform -rotate-20 opacity-90" reverse={true} />
+        <FloatingLamp className="absolute top-80 right-72 w-30 h-30 transform -rotate-8 opacity-85" reverse={true} />
+        <FloatingLamp className="absolute top-100 right-92 w-34 h-34 transform -rotate-15 opacity-80" reverse={true} />
+        <FloatingLamp className="absolute top-120 right-112 w-38 h-38 transform -rotate-25 opacity-90" reverse={true} />
+        <FloatingLamp className="absolute top-140 right-132 w-26 h-26 transform -rotate-18 opacity-80" reverse={true} />
+        <FloatingLamp className="absolute top-160 right-152 w-32 h-32 transform -rotate-30 opacity-75" reverse={true} />
+        <FloatingLamp className="absolute top-180 right-172 w-36 h-36 transform -rotate-22 opacity-85" reverse={true} />
+        <FloatingLamp className="absolute top-200 right-192 w-30 h-30 transform -rotate-35 opacity-85" reverse={true} />
 
-      <div className="bg-[url('/assets/lavaan.png')] bg-cover bg-center bg-no-repeat min-h-screen w-full px-4 sm:px-8  overflow-hidden">
-        <FallingLamps />
-        <div className=" pt-24 pb-20">
+        {/* <FallingLamps /> */}
+        <div className=" pt-24 pb-20 relative z-10">
 
           <h2 className="text-white font-cormorant text-center leading-tight
             text-[60px] sm:text-6xl lg:text-[80px] pb-350">
@@ -126,15 +180,15 @@ export default function Home() {
               Son of <br /> Amarjeet Singh and Gurmeet Kaur
             </p>
 
- <h2 className="text-white font-cormorant text-center mt-10
+            <h2 className="text-white font-cormorant text-center mt-10
             text-5xl sm:text-7xl lg:text-[100px] leading-tight">
-             & <br/>
-Ria
+              & <br />
+              Ria
             </h2>
 
 
- <p className="text-white font-cormorant text-lg sm:text-2xl mt-6">
-             D/O <br /> (Insert Names)
+            <p className="text-white font-cormorant text-lg sm:text-2xl mt-6">
+              D/O <br /> (Insert Names)
 
             </p>
             <p className="text-white font-cormorant text-lg sm:text-2xl mt-8">
@@ -220,4 +274,3 @@ Ria
     </>
   );
 }
-
