@@ -44,12 +44,12 @@ export default function MarriageCountdown() {
                         Our families are excited that you are able to join us in celebrating what we hope will be one of the happiest days of our lives.
                     </p>
                     <div className="flex flex-col-1 gap-4 justify-center items-center mt-4">
-                        <img src="/assets/instagram.png" alt="" className="h-10 w-10"/>
+                       <a href="https://www.instagram.com/theinvitearc/" target="_blank"><img src="/assets/instagram.png" alt="" className="h-10 w-10"/></a>
                         {/* <p className="lg:text-[22px] text-[18px] text-[#DEE6FF] text-center font-cormorant-upright">
                         Follow Invite Arc on Instagram</p> */}
                     </div>
                     <p className="lg:text-[16px] text-xl text-[#DEE6FF] mt-6 text-center font-cormorant-upright">
-                        © Invite Arc 2026 </p>
+                        © <a href="http://invitearc.com/" target="_blank">Invite Arc</a> 2026 </p>
                 </div>
             </div>
         </>
